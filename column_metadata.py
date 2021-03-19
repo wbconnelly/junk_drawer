@@ -1,7 +1,6 @@
 import requests
 import pandas as pd
 import json
-import csv
 import os
 import sys
 
