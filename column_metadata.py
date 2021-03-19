@@ -5,6 +5,8 @@ import csv
 import os
 import sys
 
+#to run from terminal just use the command: python3 column_metadata.py [DOMAIN] [USERNAME] [PASSWORD]
+
 #API call to the catalog 
 domain = sys.argv[1]
 
