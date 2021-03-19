@@ -7,11 +7,10 @@ import sys
 
 #to run from terminal just use the command: python3 column_metadata.py [DOMAIN] [USERNAME] [PASSWORD]
 
-#API call to the catalog 
+#get the domain
 domain = sys.argv[1]
 
-#you can just change this to your username and pw as literal strings but to get metadata for private datasets\
-# we will have to pass authentication
+#collect username and password
 username = sys.argv[2]
 password = sys.argv[3]
 
