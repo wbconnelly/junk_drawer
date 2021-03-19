@@ -18,7 +18,7 @@ output_path = os.getcwd() + "/domain_metadata.csv"
 
 def get_metadata(**kwargs):
     # get the full metadata payload from the platform
-    url = "http://api.us.socrata.com/api/catalog/v1?domains={}&only=datasets".format(domain)
+    url = "http://api.us.socrata.com/api/catalog/v1?domains={}&only=datasets&search_context={}&limit=100000".format(domain, domain)
     metadata = requests.get(url,
                           auth=(username, password),
                           headers={'Content-Type': 'application/json'}).json()
