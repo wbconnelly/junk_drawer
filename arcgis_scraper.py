@@ -105,11 +105,11 @@ for service in services:
 
 url = "https://wconnellycollibracloud.collibra.com/rest/2.0/import/json-job"
 
-username=base64.b64decode('RGF0YUxha2VBZG1pbg=='\
+username=base64.b64decode('encoded usn'\
     .encode('utf-8'))\
         .decode('utf-8')
 
-password=base64.b64decode('Y29sbGlicmFkYXRhY2l0aXplbnM='\
+password=base64.b64decode('encoded password'\
     .encode('utf-8'))\
         .decode('utf-8')
 
@@ -124,7 +124,7 @@ print(response.text)
 
 
 headers={'Content-Type': 'multipart/form-data',\
-    'Authorization': 'Basic RGF0YUxha2VBZG1pbjpjb2xsaWJyYWRhdGFjaXRpemVucw=='}
+    'Authorization': 'Basic PASSWORD=='}
 file="/Users/william.connelly/Desktop/MyDocs/API-tests/relations-asset-import.json"
 
 metadata = r.post(url=url,
