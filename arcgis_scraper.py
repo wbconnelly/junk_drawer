@@ -1,7 +1,22 @@
-#import pandas as pd
+\#import pandas as pd
+import base64
+from importlib_metadata import files
 import requests as r
+from requests.auth import HTTPBasicAuth
 import json
 import sys
+import mapper as m
+
+payload= m.Map(folder='HSEMA',\
+    service="Hospital Locations",
+    layer="Points",
+    serviceType="MapServer")
+
+print(payload.folder)
+print(payload.serviceType)
+print(payload.layer)
+
+target = payload.target
 
 #gis_server = sys.argv[1]
 #user_name = sys.argv[2]
@@ -58,9 +73,16 @@ for folder in folders:
             pass
 
 
+with open('/Users/william.connelly/Documents/python_scripts/gisImport/target.json', 'r') as data:
+    target = json.loads(data.read())
+
+for key, value in complete_json.items():
+    print(key)
+
+
 with open("/Users/william.connelly/Desktop/untitled.json", "w") as f:
     # parse through the json to access the fields of a single layer
-    data = complete_json['DCGIS_DATA'][20]['metadata']['layers'][0]['detailed_layer_metadata']['fields']
+    data = complete_json#['DCGIS_DATA'][20]['metadata']['layers'][0]['detailed_layer_metadata']['fields']
     f.write(str(data))
 f.close()
 
@@ -78,6 +100,38 @@ for service in services:
         print(layer_metadata)
 
 
+
+### - SCRATCH - ###
+
+url = "https://wconnellycollibracloud.collibra.com/rest/2.0/import/json-job"
+
+username=base64.b64decode('RGF0YUxha2VBZG1pbg=='\
+    .encode('utf-8'))\
+        .decode('utf-8')
+
+password=base64.b64decode('Y29sbGlicmFkYXRhY2l0aXplbnM='\
+    .encode('utf-8'))\
+        .decode('utf-8')
+
+files = {'file': open('/Users/william.connelly/Desktop/MyDocs/API-tests/relations-asset-import.json', 'rb')}
+
+response = r.post(
+        url, 
+        auth=(username, password),
+        files=files
+    )
+print(response.text)
+
+
+headers={'Content-Type': 'multipart/form-data',\
+    'Authorization': 'Basic RGF0YUxha2VBZG1pbjpjb2xsaWJyYWRhdGFjaXRpemVucw=='}
+file="/Users/william.connelly/Desktop/MyDocs/API-tests/relations-asset-import.json"
+
+metadata = r.post(url=url,
+    headers=headers,
+    json=target)
+
+metadata.json
 
 layer_col_data = pd.DataFrame(fields)
 
