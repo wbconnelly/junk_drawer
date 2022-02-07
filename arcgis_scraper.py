@@ -103,6 +103,37 @@ for service in services:
 
 ### - SCRATCH - ###
 
+### SCRATCH FOR EXTACT THE DATA AND MAP TO THE IMPORT TEMPLATES  ###
+with open("metadata_samples/fodler_data.json", "w") as f:
+    data = complete_json['HSEMA']#[20]['metadata']['layers'][0]['detailed_layer_metadata']['fields']
+    f.write(str(data))
+
+data = complete_json['HSEMA']#[20]['metadata']['layers'][0]['detailed_layer_metadata']['fields']
+
+with open("templates/import-folder-template.json", 'r') as f:
+    f= open("templates/import-folder-template.json", 'r') 
+    asset_list=[]
+    folder_list=[]
+    target_pattern = json.loads(f.read())[0]
+
+    for key, value in complete_json.items():
+        folder_list.append(key)
+
+    n=0
+    for i in folder_list:
+        print(i)
+        # target_pattern = json.loads(f.read())[0]
+        target_pattern['identifier']['name'] = i
+        new_pattern = json.dumps(target_pattern)
+        asset_list.append(json.loads(new_pattern))
+
+with open('uploads/folder-uploads.json', 'w') as f:
+    f.write(str(asset_list).replace("'",'"'))
+
+upload = upload_assets('https://wconnellycollibracloud.collibra.com/', 
+'uploads/folder-uploads.json')
+
+
 url = "https://wconnellycollibracloud.collibra.com/rest/2.0/import/json-job"
 
 username=base64.b64decode('encoded usn'\
