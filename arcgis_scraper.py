@@ -82,10 +82,10 @@ f.close()
 def upload_assets(domain, assets_file):
     url = domain + "/rest/2.0/import/json-job"
 
-    username=base64.b64decode('RGF0YUxha2VBZG1pbg=='\
+    username=base64.b64decode('usn'\
         .encode('utf-8'))\
             .decode('utf-8')
-    password=base64.b64decode('Y29sbGlicmFkYXRhY2l0aXplbnM='\
+    password=base64.b64decode('pass'\
         .encode('utf-8'))\
             .decode('utf-8')
 
