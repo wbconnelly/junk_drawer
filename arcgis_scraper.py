@@ -167,15 +167,6 @@ upload_schemas= upload_assets(
 
 #collect all metadata from the Services listed on the ArcGIS server homepage
 
-for service in services:
-    service_url = gis_server[:-2] + "/" + service['name']+"/"+service['type'] + "?f=pjson"
-    service_response = r.get(service_url)
-    service_json = service_response.json()
-    print(service_json)
 
-    for layer in service_json['layers']:
-        layer_url = service_url.replace("?f=pjson","/"+str(layer['id']))+"?f=pjson"
-        layer_metadata = r.get(layer_url).json()
-        print(layer_metadata)
 
 
