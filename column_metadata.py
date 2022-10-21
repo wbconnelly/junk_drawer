@@ -10,7 +10,7 @@ import sys
 domain = sys.argv[1]
 
 #collect username and password
-username = sys.argv[2]
+usn = sys.argv[2]
 password = sys.argv[3]
 
 #get the current working directory and create output path
@@ -20,7 +20,7 @@ def get_metadata(**kwargs):
     # get the full metadata payload from the platform
     url = "http://api.us.socrata.com/api/catalog/v1?domains={}&only=datasets&search_context={}&limit=100000".format(domain, domain)
     metadata = requests.get(url,
-                          auth=(username, password),
+                          auth=(usn, password),
                           headers={'Content-Type': 'application/json'}).json()
     #create an empty dict and lists to collect the data
     data = {}
