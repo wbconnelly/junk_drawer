@@ -79,8 +79,8 @@ f.close()
 ### SCRATCH FOR EXTACT THE DATA AND MAP TO THE IMPORT TEMPLATES  ###
 
 # funciton to upload assets 
-def upload_assets(domain, assets_file):
-    url = domain + "/rest/2.0/import/json-job"
+def upload_assets(dom, assets_file):
+    url = dom + "/rest/2.0/import/json-job"
 
     username=base64.b64decode('usn'\
         .encode('utf-8'))\
